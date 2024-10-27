@@ -25,7 +25,7 @@ Clone the repository to your local machine:
 
 ```bash
 git clone <repository-url>
-cd preeclampsia-risk-classification
+cd preeclampsia-classification
 ```
 
 #### Step 2: Set up a Virtual Environment (Recommended)
@@ -125,7 +125,7 @@ Clone repository ke komputer lokal Anda:
 
 ```bash
 git clone <repository-url>
-cd preeclampsia-risk-classification
+cd preeclampsia-classification
 ```
 
 #### Langkah 2: Buat Virtual Environment (Direkomendasikan)
