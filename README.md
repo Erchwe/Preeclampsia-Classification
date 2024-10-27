@@ -199,10 +199,6 @@ curl -X POST http://127.0.0.1:5000/classify -H "Content-Type: application/json" 
 - **Server Tidak Berjalan**: Pastikan Flask telah diinstal dan `app.py` berada di direktori yang benar.
 - **Kesalahan Memuat Model**: Verifikasi bahwa `model.pkl` ada di direktori dan kompatibel dengan kode.
 
-## Lisensi
-
-Proyek ini dilisensikan di bawah MIT License.
-
 
 
 ## Versi Bahasa Indonesia
@@ -303,6 +299,4 @@ curl -X POST http://127.0.0.1:5000/classify -H "Content-Type: application/json" 
 - **Server Tidak Berjalan**: Pastikan Flask telah diinstal dan `app.py` berada di direktori yang benar.
 - **Kesalahan Memuat Model**: Verifikasi bahwa `model.pkl` ada di direktori dan kompatibel dengan kode.
 
-## Lisensi
 
-Proyek ini dilisensikan di bawah MIT License.
