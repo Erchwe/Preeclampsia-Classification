@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-eclampsia Risk Classification</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pre-eclampsia Risk Classification</h2>
+        <form id="riskForm">
+            <div class="row">
+                <!-- Numeric input fields -->
+                <div class="col-md-6 form-group">
+                    <label for="age">Umur</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="gest_age">Usia kehamilan (dalam minggu)</label>
+                    <input type="number" class="form-control" id="gest_age" name="gest_age" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="height">Tinggi badan (cm)</label>
+                    <input type="number" class="form-control" id="height" name="height" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="weight">Berat badan (kg)</label>
+                    <input type="number" class="form-control" id="weight" name="weight" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="bmi">BMI</label>
+                    <input type="number" class="form-control" id="bmi" name="bmi" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="sysbp">Tekanan Darah Systolic </label>
+                    <input type="number" class="form-control" id="sysbp" name="sysbp" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="diabp">Tekanan Darah Diastolik </label>
+                    <input type="number" class="form-control" id="diabp" name="diabp" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="hb">Hemoglobin</label>
+                    <input type="number" class="form-control" id="hb" name="hb" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="pcv">PCV</label>
+                    <input type="number" class="form-control" id="pcv" name="pcv" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="tsh">Thyroid-stimulating hormone (mIU/L)</label>
+                    <input type="number" class="form-control" id="tsh" name="tsh" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="pp_13">PP 13 (Diastolik - Sistolik)</label>
+                    <input type="number" class="form-control" id="pp_13" name="pp_13" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="glycerides">Glycerides (mg/dL)</label>
+                    <input type="number" class="form-control" id="glycerides" name="glycerides" required>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="platelet">Platelet</label>
+                    <input type="number" class="form-control" id="platelet" name="platelet" required>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="creatinine">Creatinine</label>
+                    <input type="number" class="form-control" id="creatinine" name="creatinine" required>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="plgf_sflt">Plgf:sflt</label>
+                    <input type="number" class="form-control" id="plgf_sflt" name="plgf_sflt" required>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="SEng">SEng</label>
+                    <input type="number" class="form-control" id="SEng" name="SEng" required>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="cysC">CysC</label>
+                    <input type="number" class="form-control" id="cysC" name="cysC" required>
+                </div>
+
+                <!-- Radio button fields for Yes/No options -->
+                <div class="col-md-6 form-group">
+                    <label>Hipertensi</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="htn" id="htn_yes" value="1" required>
+                            <label class="form-check-label" for="htn_yes">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="htn" id="htn_no" value="0" required>
+                            <label class="form-check-label" for="htn_no">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Diabetes</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="diabetes" id="diabetes_yes" value="1" required>
+                            <label class="form-check-label" for="diabetes_yes">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="diabetes" id="diabetes_no" value="0" required>
+                            <label class="form-check-label" for="diabetes_no">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Riwayat hipertensi dalam keluarga</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="fam_htn" id="fam_htn_yes" value="1" required>
+                            <label class="form-check-label" for="fam_htn_yes">Ada</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="fam_htn" id="fam_htn_no" value="0" required>
+                            <label class="form-check-label" for="fam_htn_no">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Dalam diet spesial</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="diet" id="diet_yes" value="1" required>
+                            <label class="form-check-label" for="diet_yes">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="diet" id="diet_no" value="0" required>
+                            <label class="form-check-label" for="diet_no">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Kondisi masalah khusus pada arteri</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sp_art" id="sp_art_yes" value="1" required>
+                            <label class="form-check-label" for="sp_art_yes">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sp_art" id="sp_art_no" value="0" required>
+                            <label class="form-check-label" for="sp_art_no">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Kesibukan Pekerjaan</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="occupation" id="occupation_low" value="0" required>
+                            <label class="form-check-label" for="occupation_low">Rendah</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="occupation" id="occupation_medium" value="1" required>
+                            <label class="form-check-label" for="occupation_medium">Sedang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="occupation" id="occupation_high" value="2" required>
+                            <label class="form-check-label" for="occupation_high">Tinggi</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Activity level field -->
+                <div class="col-md-6 form-group">
+                    <label>Tingkat aktivitas</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activity" id="activity_low" value="0" required>
+                            <label class="form-check-label" for="activity_low">Rendah</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activity" id="activity_medium" value="1" required>
+                            <label class="form-check-label" for="activity_medium">Sedang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activity" id="activity_high" value="2" required>
+                            <label class="form-check-label" for="activity_high">Tinggi</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sleep quality field -->
+                <div class="col-md-6 form-group">
+                    <label>Kualitas tidur</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sleep" id="sleep_low" value="0" required>
+                            <label class="form-check-label" for="sleep_low">Rendah</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sleep" id="sleep_medium" value="1" required>
+                            <label class="form-check-label" for="sleep_medium">Sedang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sleep" id="sleep_high" value="2" required>
+                            <label class="form-check-label" for="sleep_high">Tinggi</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="col-12">
+                    <button type="button" onclick="classifyRisk()" class="btn btn-primary btn-block mt-3">Klasifikasi Risiko</button>
+                </div>
+            </div>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>function classifyRisk() {
+        console.log("button clicked")
+        const data = {
+            age: parseFloat(document.getElementById('age').value),
+            gest_age: parseFloat(document.getElementById('gest_age').value),
+            height: parseFloat(document.getElementById('height').value),
+            weight: parseFloat(document.getElementById('weight').value),
+            bmi: parseFloat(document.getElementById('bmi').value),
+            sysbp: parseFloat(document.getElementById('sysbp').value),
+            diabp: parseFloat(document.getElementById('diabp').value),
+            hb: parseFloat(document.getElementById('hb').value),
+            pcv: parseFloat(document.getElementById('pcv').value),
+            tsh: parseFloat(document.getElementById('tsh').value),
+            pp_13: parseFloat(document.getElementById('pp_13').value),
+            glycerides: parseFloat(document.getElementById('glycerides').value),
+            htn: parseInt(document.querySelector('input[name="htn"]:checked').value),
+            diabetes: parseInt(document.querySelector('input[name="diabetes"]:checked').value),
+            fam_htn: parseInt(document.querySelector('input[name="fam_htn"]:checked').value),
+            diet: parseInt(document.querySelector('input[name="diet"]:checked').value),
+            sp_art: parseInt(document.querySelector('input[name="sp_art"]:checked').value),
+            activity: parseInt(document.querySelector('input[name="activity"]:checked').value),
+            sleep: parseInt(document.querySelector('input[name="sleep"]:checked').value),
+            occupation: parseInt(document.querySelector('input[name="occupation"]:checked').value),  // Updated line
+            platelet: parseFloat(document.getElementById('platelet').value),
+            creatinine: parseFloat(document.getElementById('creatinine').value),
+            plgf_sflt: parseFloat(document.getElementById('plgf_sflt').value),
+            SEng: parseFloat(document.getElementById('SEng').value),
+            cysC: parseFloat(document.getElementById('cysC').value)
+        };
+    
+        fetch('http://127.0.0.1:5000/classify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            document.getElementById('result').innerHTML = 'Tingkat risiko yang diprediksi: ' + result.risk;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
+</body>
+</html>
